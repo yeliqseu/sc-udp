@@ -1,0 +1,24 @@
+def build(bld):
+    obj = bld.create_ns3_program('stream-server-client-sim',['core', 'point-to-point', 'internet', 'applications','point-to-point-layout','flow-monitor'])
+    obj.source= [ 'stream-server-client-sim.cc',
+				  'stream-server-app.cc',
+				  'stream-client-app.cc',
+				  'handlepacket.cc',
+                  'infoqueue.cc',
+				]
+    # Link to libstreamc.a
+    obj.env.append_value('CXXFLAGS','-I/Users/yeli/Documents/ns-3.33-fec/examples/streamc-udp')
+    obj.env.append_value('LINKFLAGS',['-L/Users/yeli/Documents/ns-3.33-fec/examples/streamc-udp'])
+    obj.env.append_value('LIB', ['streamc'])
+
+    obj = bld.create_ns3_program('mixed-flow-comparison',['core', 'point-to-point', 'internet', 'applications','point-to-point-layout','flow-monitor'])
+    obj.source= [ 'mixed-flow-comparison.cc',
+				  'stream-server-app.cc',
+				  'stream-client-app.cc',
+				  'handlepacket.cc',
+                  'infoqueue.cc',
+				]
+    # Link to libstreamc.a
+    obj.env.append_value('CXXFLAGS','-I/Users/yeli/Documents/ns-3.33-fec/examples/streamc-udp')
+    obj.env.append_value('LINKFLAGS',['-L/Users/yeli/Documents/ns-3.33-fec/examples/streamc-udp'])
+    obj.env.append_value('LIB', ['streamc'])
